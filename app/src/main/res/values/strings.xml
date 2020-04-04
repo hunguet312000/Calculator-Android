@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="text1">Số thứ nhất :</string>
+    <string name="text2">Số thứ hai :</string>
+    <string name="hint1">Nhập số</string>
+    <string name="hint2">Nhập số</string>
+    <string name="button1">Tổng</string>
+    <string name="button2">Thử lại</string>
+</resources>

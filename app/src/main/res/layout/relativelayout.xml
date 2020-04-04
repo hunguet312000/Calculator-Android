@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/Test1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test1"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/Test2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/Test1"
+        android:text="Test2"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/Test3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignBaseline="@id/Test1"
+        android:text="Test3"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/Test4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/Test1"
+        android:text="Test4"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/Test5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/Test1"
+        android:layout_toRightOf="@id/Test1"
+        android:text="Test5"
+        android:textSize="20dp" />
+
+</RelativeLayout>
