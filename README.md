@@ -1,3 +1,3 @@
 # Calculator-Android
 
-![](Image.PNG.png)
+![](Image.png)
