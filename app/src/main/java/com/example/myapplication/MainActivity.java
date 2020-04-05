@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     TextView editText;
-    String numberDisplay = "";
+    String numberDisplay = "" ;
     Double valueas = 0.0 , value1 = 0.0 , value2 = 0.0, valuemd = 1.0, ans = 0.0 ;
     int count1 = 0 , count2 = 0 , countdot = 0;
     boolean add = false , sub = false , mult = false , div = false , bang = false , cl = false , sq = false , pow2 = false , log = false ;
@@ -85,15 +85,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     editText.setText(String.valueOf(ans));
                 }
                 else if (sq == true && pow2 == false && log == false){
-                    editText.setText(String.valueOf("√" + numberDisplay + " = " + Math.sqrt(Double.valueOf(numberDisplay))));
+                    editText.setText(String.valueOf(Math.sqrt(Double.valueOf(numberDisplay))));
                     sq = false;
                 }
                 else if ( sq == false && pow2 == true && log == false){
-                    editText.setText(String.valueOf( numberDisplay + "^2  = " + Math.pow(Double.valueOf(numberDisplay), 2)));
+                    editText.setText(String.valueOf( Math.pow(Double.valueOf(numberDisplay), 2)));
                     pow2 = false;
                 }
                 else if ( sq == false && pow2 == false && log == true){
-                    editText.setText("log(" + numberDisplay + ") =" + String.valueOf(Math.log(Double.parseDouble(numberDisplay))));
+                    editText.setText(String.valueOf(Math.log10(Double.parseDouble(numberDisplay))));
                     log = false;
                 }
                 break;
@@ -103,13 +103,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.dot:
                 countdot++;
-                if ( countdot == 1 && !numberDisplay.equals("+") && !numberDisplay.equals("-") && !numberDisplay.equals("x")
+                if (numberDisplay.equals("")){countdot--;}
+                else if ( countdot == 1 && !numberDisplay.equals("+") && !numberDisplay.equals("-") && !numberDisplay.equals("x")
                         && !numberDisplay.equals("/")){
                     numberDisplay += ".";
                     editText.setText(numberDisplay);
                 }
                 else if ( countdot > 1 || numberDisplay.equals("+") || numberDisplay.equals("-") || numberDisplay.equals("x")
-                || numberDisplay.equals("/") ){}
+                || numberDisplay.equals("/") || bang == true){}
                 break;
             default:
                 numberDisplay += ((Button)v).getText();
@@ -119,23 +120,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void clear (){
         numberDisplay = "";
-        editText.setText("CLEAR");
-        if ( bang == true ){
-            countdot = 0;
-            if (add == true) {ans = 0.0;tong();}
-            if ( sub == true ) {ans = 0.0;hieu();}
-            if (mult == true ) {ans = 1.0 ; tich();}
-            if ( div == true ) {ans = 1.0 ;chia();}
-
-        }
-        else { value1 = 0.0 ; value2 = 0.0 ; valueas = 0.0; valuemd = 1.0 ; countdot = 0;}
+        editText.setText("0");
+         value1 = 0.0 ; value2 = 0.0 ; valueas = 0.0; valuemd = 1.0 ; countdot = 0;
+         add = false ; sub = false ; mult = false;div = false; bang = false;
     }
 
     private void tong(){
-        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){
-            editText.setText("");
-        }
-        else{
+        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false ){}
+        else if (numberDisplay.equals("") && ( add ==true || sub == true || mult == true || div == true)){}
+        else {
             add = true;
             sub = false;
             mult = false;
@@ -151,20 +144,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 valueas = ans;
                 numberDisplay = "";
                 editText.setText("");
-                if ( cl == false ) editText.setText("+");
-                else {
-                    editText.setText("CLEAR");
-                    cl = false;
-                }
+                editText.setText("+");
                 bang = false;
             }
         }
     }
 
     private void hieu(){
-        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){
-            editText.setText("");
-        }
+        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){}
+        else if (numberDisplay.equals("") && ( add ==true || sub == true || mult == true || div == true)){}
         else {
             sub = true;
             add = false;
@@ -186,20 +174,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 valueas = ans;
                 numberDisplay = "";
                 editText.setText("");
-                if ( cl == false ) editText.setText("-");
-                else {
-                    editText.setText("CLEAR");
-                    cl = false;
-                }
+                editText.setText("-");
                 bang = false;
             }
         }
     }
 
     private void tich(){
-        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){
-            editText.setText("");
-        }
+        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){}
+        else if (numberDisplay.equals("") && ( add ==true || sub == true || mult == true || div == true)){}
         else {
             add = false;
             sub = false;
@@ -216,20 +199,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 valuemd = ans;
                 numberDisplay = "";
                 editText.setText("");
-                if ( cl == false ) editText.setText("x");
-                else {
-                    editText.setText("CLEAR");
-                    cl = false;
-                }
+                editText.setText("x");
                 bang = false;
             }
         }
     }
 
     private void chia(){
-        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){
-            editText.setText("");
-        }
+        if ( numberDisplay.equals("") && add == false && sub == false && mult == false && div == false){}
+        else if (numberDisplay.equals("") && ( add ==true || sub == true || mult == true || div == true)){}
         else{
             add = false;
             sub = false;
@@ -251,11 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 valuemd = ans;
                 numberDisplay = "";
                 editText.setText("");
-                if ( cl == false ) editText.setText("/");
-                else {
-                    editText.setText("CLEAR");
-                    cl = false;
-                }
+                editText.setText("/");
                 bang = false;
             }
         }
